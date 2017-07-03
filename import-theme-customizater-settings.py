@@ -199,8 +199,19 @@ def upload_a_file_custom_theme_settings():
     print(xpathimpbutton + ' clicked' + os.linesep)
     log.write(now + ' ' + xpathimpbutton + ' clicked' + os.linesep)
     
-    # missing part, checking is file well imported
-
+    # check validity of import, if popup shows then is not valid
+    try:
+        wait.until(EC.alert_is_present())
+        bOK = False
+    except:
+        bOK = True
+        
+    if bOK:
+        print(absolute_path_to_json_file + ' imported successfully')
+        log.write(now + ' ' + absolute_path_to_json_file + ' imported successfully')
+    else:
+        print(absolute_path_to_json_file + ' not imported')
+        log.write(now + ' ' + absolute_path_to_json_file + ' not imported')
 
 def calculate_time():
     '''function to calculate elapsed time'''
